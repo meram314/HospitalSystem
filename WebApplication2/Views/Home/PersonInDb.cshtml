@@ -1,0 +1,12 @@
+﻿@using WebApplication2.viewModels
+@model personVm
+<ul>
+    @foreach (var item in Model.Persons)
+    {
+        <li>Id : @item.Id</li>
+        <li>Name : @item.Name</li>
+        <li>Salary : @item.Salary</li>
+        <br />  
+        <h3>the count is @Model.count</h3>
+    }
+</ul>

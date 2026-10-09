@@ -1,0 +1,60 @@
+﻿@model List<HospitalSystem.Models.Appointment>
+
+@{
+ViewData["Title"] = "All Appointments";
+}
+
+<div class="container mt-5">
+
+```
+<h2 class="mb-4">All Appointments</h2>
+
+<p>Number of appointments: @Model.Count</p>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-light">
+        <tr>
+            <th>Patient Name</th>
+            <th>Doctor</th>
+            <th>Specialization</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.PatientName</td>
+
+                <td>
+                    @(appointment.Doctor?.Name ?? "No doctor")
+                </td>
+
+                <td>
+                    @(appointment.Doctor?.Specialization?.Name ?? "N/A")
+                </td>
+
+                <td>
+                    @appointment.Date.ToString("yyyy-MM-dd")
+                </td>
+
+                <td>
+                    @appointment.Time.ToString(@"hh\:mm")
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<a asp-controller="Doctor"
+   asp-action="Index"
+   class="btn btn-primary">
+    Back to Doctors
+</a>
+```
+
+</div>

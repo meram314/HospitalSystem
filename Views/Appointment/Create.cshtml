@@ -1,0 +1,58 @@
+﻿@model HospitalSystem.Models.Appointment
+
+@{
+    ViewData["Title"] = "Book Appointment";
+    var doctor = ViewBag.Doctor as HospitalSystem.Models.Doctor;
+}
+
+<div class="container mt-5">
+    <div class="card p-4 shadow">
+
+        <h2>Book Appointment</h2>
+
+        @if (doctor != null)
+        {
+            <h5>Doctor: @doctor.Name</h5>
+            <p>Specialization: @doctor.Specialization?.Name</p>
+        }
+
+        <form asp-controller="Appointment"
+              asp-action="Create"
+              method="post">
+
+            <input type="hidden"
+                   name="DoctorId"
+                   value="@doctor?.DoctorId" />
+
+            <div class="mb-3">
+                <label class="form-label">Patient Name</label>
+                <input type="text"
+                       name="PatientName"
+                       class="form-control"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Date</label>
+                <input type="date"
+                       name="Date"
+                       class="form-control"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Time</label>
+                <input type="time"
+                       name="Time"
+                       class="form-control"
+                       required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Confirm Appointment
+            </button>
+
+        </form>
+
+    </div>
+</div>
